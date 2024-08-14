@@ -18,4 +18,9 @@ public class Avion
                 this.envergadura = unaEnvergadura;
                 this.matricula = unaMatricula;
         }
+        
+        public double obtenerEnvergadura()
+        {
+                return (this.envergadura);
+        }
 }
