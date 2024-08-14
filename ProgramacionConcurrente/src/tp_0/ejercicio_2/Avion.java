@@ -12,7 +12,16 @@ public class Avion
         private double envergadura;
         private String matricula;
         
-        public Avion(String unaMatricula, double unaEnvergadura, int unAgnoFabricacion)
+        /**
+         * Constructor accesible por subclases.
+         * 
+         * @param unaMatricula
+         * @param unaEnvergadura
+         * @param unAgnoFabricacion 
+         */
+        protected Avion(String unaMatricula,
+                double unaEnvergadura,
+                int unAgnoFabricacion)
         {
                 this.agnoFabricacion = unAgnoFabricacion;
                 this.envergadura = unaEnvergadura;

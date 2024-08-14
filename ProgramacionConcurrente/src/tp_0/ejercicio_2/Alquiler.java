@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Alquiler
 {
-        private short posicionEstacionamiento;
+        private int posicionEstacionamiento;
         private Cliente cliente;
         private Avion avion;
         private LocalDateTime fechaHoraInicio;
@@ -25,21 +25,22 @@ public class Alquiler
         static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         
         /**
+         * Constructor con todos los parámetros.
          * 
          * @param unaPosicionEstacionamiento
          * @param unCliente
          * @param unAvion
          * @param unaFechaInicio
-         * @param unaFechaFin
          * @param unaHoraInicio
+         * @param unaFechaFin
          * @param unaHoraFin 
          */
-        public Alquiler(short unaPosicionEstacionamiento,
+        public Alquiler(int unaPosicionEstacionamiento,
                 Cliente unCliente,
                 Avion unAvion,
                 String unaFechaInicio,
-                String unaFechaFin,
                 String unaHoraInicio,
+                String unaFechaFin,                
                 String unaHoraFin)
         {
                 this.posicionEstacionamiento = unaPosicionEstacionamiento;
@@ -58,11 +59,22 @@ public class Alquiler
                 }
         }
         
+        /**
+         * Calcula la cantidad de horas entre el inicio y el fin del alquiler.
+         * 
+         * @return La cantidad de horas.
+         */
         private long obtenerDuracionEnHoras()
         {
                 return (Duration.between(fechaHoraInicio, fechaHoraFin).toHours());
         }
         
+        /**
+         * Calcula el valor del alquiler según duración, envergadura del avión
+         * y el módulo variable.
+         * 
+         * @return El valor del alquiler.
+         */
         public double obtenerValor()
         {
                 return (this.obtenerDuracionEnHoras() * (this.avion.obtenerEnvergadura() * 20) + 250);
