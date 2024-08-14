@@ -8,11 +8,11 @@ package tp_0.ejercicio_2;
  */
 public class Avion
 {
-        private short agnoFabricacion;
+        private int agnoFabricacion;
         private double envergadura;
         private String matricula;
         
-        public Avion(String unaMatricula, double unaEnvergadura, short unAgnoFabricacion)
+        public Avion(String unaMatricula, double unaEnvergadura, int unAgnoFabricacion)
         {
                 this.agnoFabricacion = unAgnoFabricacion;
                 this.envergadura = unaEnvergadura;
