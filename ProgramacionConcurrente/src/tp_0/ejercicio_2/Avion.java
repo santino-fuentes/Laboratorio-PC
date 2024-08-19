@@ -32,4 +32,9 @@ public class Avion
         {
                 return (this.envergadura);
         }
+
+	public double obtenerModulo()
+	{
+		return (this.envergadura * 20);
+	}
 }
