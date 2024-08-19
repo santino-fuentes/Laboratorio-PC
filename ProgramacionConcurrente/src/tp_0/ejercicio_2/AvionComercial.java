@@ -29,4 +29,9 @@ public class AvionComercial extends Avion
                 this.potencia = unaPotencia;
                 this.capacidadPasajeros = unaCapacidadPasajeros;
         }
+
+	public obtenerModulo()
+	{
+		return (super.obtenerModulo() + this.potencia + this.capacidadPasajeros);
+	}
 }

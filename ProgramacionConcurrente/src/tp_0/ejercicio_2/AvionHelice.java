@@ -24,4 +24,9 @@ public class AvionHelice extends Avion {
                 super(unaMatricula, unaEnvergadura, unAgnoFabricacion);
                 this.potencia = unaPotencia;
         }
+
+	public obtenerModulo()
+	{
+		return (super.obtenerModulo() + this.potencia);
+	}
 }

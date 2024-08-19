@@ -25,4 +25,9 @@ public class AvionReaccion extends Avion
                 super(unaMatricula, unaEnvergadura, unAgnoFabricacion);
                 this.nroMotores = unNroMotores;
         }
+
+	public obtenerModulo()
+	{
+		return (super.obtenerModulo() + this.nroMotores);
+	}
 }
