@@ -77,6 +77,6 @@ public class Alquiler
          */
         public double obtenerValor()
         {
-                return (this.obtenerDuracionEnHoras() * (this.avion.obtenerEnvergadura() * 20) + 250);
+                return (this.obtenerDuracionEnHoras() * (this.avion.obtenerModulo() + 250));
         }
 }
