@@ -16,6 +16,16 @@ public class Corredor implements Runnable
                 this.distanciaRecorrida = 0;
         }
         
+        public String nombre()
+        {
+                return (this.nombre);
+        }
+        
+        public int distanciaRecorrida()
+        {
+                return (this.distanciaRecorrida);
+        }
+        
         public void run()
         {
                 System.out.println("Comienza la carrera " + this.nombre);
@@ -34,12 +44,8 @@ public class Corredor implements Runnable
                                         + " avanzó " + pasos + " pasos.");
                                 Thread.sleep(100);
                         }
-                        
-                        System.out.println("Corredor " + this.nombre + " recorrió "
-                                + this.distanciaRecorrida + this.pasos + " pasos.");
-                } catch (Exception e) {
+                } catch (Exception exc) {
                         System.out.println("ERROR");
-                        ArrayIndexOutOfBoundsException
                 }
         }
 }
