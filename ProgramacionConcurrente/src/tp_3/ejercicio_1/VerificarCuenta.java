@@ -10,36 +10,50 @@ import java.util.logging.Logger;
 public class VerificarCuenta implements Runnable
 {
 
-        private CuentaBanco cb = new CuentaBanco();
+        private CuentaBanco cuentaBanco = new CuentaBanco(50);
 
-        private void HacerRetiro(int cantidad) throws InterruptedException
+        private void hacerRetiro(int cantidad) throws InterruptedException
         {
-                if (cb.getBalance() >= cantidad) {
+                if (verificarBalance(cantidad)) {
                         System.out.println(Thread.currentThread().getName()
-                                + "está realizando un retiro de: "
+                                + " está realizando un retiro de: "
                                 + cantidad + ".");
                         Thread.sleep(1000);
-                        cb.retiroBancario(cantidad);
+                        if (retirar(cantidad)) // Sección crítica
+                                System.out.println(Thread.currentThread().getName() + ": Retiro realizado.");
                         System.out.println(Thread.currentThread().getName()
-                                + ": Retiro realizado.");
-                        System.out.println(Thread.currentThread().getName()
-                                + ": Los fondos son de: " + cb.getBalance());
+                                + ": Los fondos son de: " + cuentaBanco.getBalance());
                 } else {
                         System.out.println("No hay suficiente dinero en la cuenta para realizar el retiro Sr. "
                                 + Thread.currentThread().getName());
-                        System.out.println("Su saldo actual es de"
-                                + cb.getBalance());
+                        System.out.println("Su saldo actual es de "
+                                + cuentaBanco.getBalance());
                         Thread.sleep(1000);
                 }
         }
         
+        private synchronized boolean retirar(int unaCantidad)
+        {
+                return (this.cuentaBanco.retiroBancario(unaCantidad));
+        }
+        
+        private synchronized boolean verificarBalance(int unaCantidad)
+        {
+                return (this.cuentaBanco.getBalance() >= unaCantidad);
+        }
+        
+        @Override
         public void run()
         {
                 for (int i = 0; i <= 3; i++) {
                         try {
-                                this.HacerRetiro(10);
-                                if(cb.getBalance() < 0){
+                                if(this.cuentaBanco.getBalance() < 0) {
                                         System.out.println("La cuenta está sobregirada.");
+                                } else {
+                                        System.out.println("Retiro n° "
+                                                + (i + 1) + " de "
+                                        + Thread.currentThread().getName());
+                                        this.hacerRetiro(10);
                                 }
                         } catch (InterruptedException ex) {
                                 Logger.getLogger(VerificarCuenta.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tp_3.ejercicio_1;
 
 /**
@@ -11,19 +7,25 @@ package tp_3.ejercicio_1;
 public class CuentaBanco
 {
 
-        private int balance = 50;
+        private int balance;
 
-        public CuentaBanco()
+        public CuentaBanco(int unDeposito)
         {
+                this.balance = unDeposito;
         }
 
         public int getBalance()
         {
-                return balance;
+                return (this.balance);
         }
 
-        public void retiroBancario(int retiro)
+        public boolean retiroBancario(int retiro)
         {
-                balance = balance - retiro;
+                boolean exito = false;
+                if (this.balance > 0) {
+                        this.balance = this.balance - retiro;
+                        exito = true;
+                }
+                return (exito);
         }
 }
