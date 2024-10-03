@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tp_3.ejercicio_3;
 
 /**
@@ -29,9 +24,13 @@ public class Hamster implements Runnable
                         System.out.println(Thread.currentThread().getName()
                                 + " entró a la jaula (por voluntad propia, obviamente).");
                         this.hamaca.hamacarse();
+                        Thread.sleep(1000);
                         this.plato.comer();
+                        Thread.sleep(1000);
                         this.rueda.correr();
-                } catch (Exception e) {
+                        Thread.sleep(1000);
+                } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
                 }
         }
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tp_3.ejercicio_3;
 
 /**
@@ -15,6 +10,5 @@ public class Hamaca
         {
                 System.out.println(Thread.currentThread().getName()
                         + "\n|Descansando...\n|Zzz, zzz, zzz...");
-                Thread.sleep(1000);
         }
 }
