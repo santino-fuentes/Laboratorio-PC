@@ -41,15 +41,13 @@ public class Auto extends Vehiculo implements Runnable
         }
         
         /**
-         * Verifica que la cantidad de combustible sea suficiente para
-         * recorrer una cantidad de kilómetros
+         * Verifica si no se ha llegado a la reserva
          * 
-         * @param unKm
          * @return 
          */
-        private boolean puedeAndar(float unKm)
+        private boolean tieneCombustible()
         {
-                return (this.combustibleActual > calcularConsumo(unKm));
+                return (this.combustibleActual > this.combustibleReserva);
         }
         
         /**
@@ -63,15 +61,27 @@ public class Auto extends Vehiculo implements Runnable
                 this.combustibleActual -= calcularConsumo(unosKm);
         }
         
+        /**
+         * Simula el recorrido de una cantidad de km del auto
+         * 
+         * @param unKm 
+         */
         public void andar(int unKm)
         {
-                if (puedeAndar(unKm) && unKm > 0) {
-                        this.recorrerKm(unKm);
-                        consumirCombustible(unKm);
-                        unKm--;//nonononono
-                } else {
-                        this.surtidor.cargarCombustible(345);
-                        andar(unKm);
+                while (unKm > 0) {
+                        if (tieneCombustible()) {
+                                System.out.println(Thread.currentThread().getName()
+                                        + "\n|--> Andando 1 km");
+                                recorrerKm(1);
+                                consumirCombustible(1);
+                                unKm--;
+                        } else {
+                                String ticketSurtidor = this.surtidor.cargarCombustible(
+                                        calcularConsumo(unKm));
+                                System.out.println(Thread.currentThread().getName()
+                                        + "\n|--> Parada en surtidor"
+                                        + "\n|--> " + ticketSurtidor);
+                        }
                 }
         }
         
@@ -79,8 +89,9 @@ public class Auto extends Vehiculo implements Runnable
         public void run()
         {
                 try {
-                        System.out.println("Auto " + Thread.currentThread().getName());
-                        andar(1);
+                        System.out.println("INICIO Auto " + Thread.currentThread().getName());
+                        andar(20);
+                        System.out.println("FINALIZA Auto " + Thread.currentThread().getName());
                 } catch (Exception ex) {
                         System.out.println(ex.getMessage());
                 }
