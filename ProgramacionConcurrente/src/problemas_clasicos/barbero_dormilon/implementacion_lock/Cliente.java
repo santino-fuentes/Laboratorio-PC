@@ -1,4 +1,4 @@
-package problemas_clasicos.barbero_dormilon;
+package problemas_clasicos.barbero_dormilon.implementacion_lock;
 
 /**
  *

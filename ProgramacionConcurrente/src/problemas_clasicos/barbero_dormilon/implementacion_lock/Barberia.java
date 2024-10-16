@@ -1,4 +1,4 @@
-package problemas_clasicos.barbero_dormilon;
+package problemas_clasicos.barbero_dormilon.implementacion_lock;
 
 /**
  *
@@ -31,5 +31,16 @@ public class Barberia
                 }
                 
                 return disponible;
+        }
+
+        public synchronized boolean ingresar()
+        {
+                if (this.hayLugar())
+                        this.sentarseAEsperar();
+        }
+
+        public synchronized void dormir()
+        {
+                foo;
         }
 }
