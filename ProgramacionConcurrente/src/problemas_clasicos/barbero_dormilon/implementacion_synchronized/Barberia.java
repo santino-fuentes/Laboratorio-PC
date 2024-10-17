@@ -25,6 +25,15 @@ public class Barberia
                 return (this.sillasEspera.size() <= this.CANTIDAD_LUGARES);
         }
         
+        public synchronized void ingresar(Cliente unCliente) throws InterruptedException
+        {
+                while (!this.intentarIngresar(unCliente)) {
+                        System.out.println(Thread.currentThread().getName()
+                                + "\n|--> Siempre está llena esta cueva de ratas...");
+                        this.wait();
+                }
+        }
+        
         public synchronized boolean intentarIngresar(Cliente unCliente)
         {
                 boolean pudoIngresar = false;

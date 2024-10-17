@@ -25,10 +25,7 @@ public class Cliente implements Runnable
         {
                 try {
                         System.out.println("INICIO " + Thread.currentThread().getName());
-                        while (!barberia.intentarIngresar(this)) {
-                                System.out.println(Thread.currentThread().getName()
-                                + "\n|--> Siempre está llena esta cueva de ratas...");
-                        }
+                        this.barberia.ingresar(this);
                 } catch (Exception ex) {
                         System.out.println(ex.getMessage());
                 } finally {
